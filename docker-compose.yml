@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  item-db:
+    image: mongo:3
+    volumes:
+      - app-db:/data/db
+    restart: always
+
+  item-app:
+    image: bagusadlan/item-app:v1  # Ganti dengan nama image yang sesuai dari Docker Hub atau GitHub Packages
+    ports:
+      - "80:8080"
+    depends_on:
+      - item-db
+    restart: always
+
+volumes:
+  app-db:
